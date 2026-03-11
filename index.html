@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawan Kumar - CV</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #374150;
+            line-height: 1.6;
+            background: #f5f8fd;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e375f, #2d4a7a);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: padding 0.3s;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            transition: font-size 0.3s;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        header .contact {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            transition: all 0.3s;
+        }
+
+        header.compact {
+            padding: 0.6rem 1.5rem;
+        }
+
+        header.compact h1 {
+            font-size: 1.3rem;
+            display: inline;
+            margin-right: 0.8rem;
+        }
+
+        header.compact .subtitle {
+            display: inline;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        header.compact .contact {
+            display: none;
+        }
+
+        header .contact a {
+            color: #c8d8f0;
+            text-decoration: none;
+        }
+
+        header .contact a:hover { text-decoration: underline; }
+
+        .print-btn {
+            position: fixed;
+            right: 1rem;
+            top: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-family: inherit;
+            z-index: 100;
+        }
+
+        .print-btn:hover {
+            color: white;
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #1e375f;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #aab9cd;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary p { margin-bottom: 0.6rem; }
+
+        .domains { color: #5a6478; font-size: 0.92rem; }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 0.5rem 1rem;
+            font-size: 0.93rem;
+        }
+
+        .skills-grid .label {
+            font-weight: 600;
+            color: #1e375f;
+        }
+
+        /* Education */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+        }
+
+        .edu-item + .edu-item { border-top: 1px solid #eef1f5; }
+
+        .edu-item .degree { font-weight: 600; }
+        .edu-item .school { color: #5a6478; font-size: 0.9rem; }
+
+        /* Experience */
+        .job {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #aab9cd;
+        }
+
+        .job:last-child { margin-bottom: 0; }
+
+        .job-header {
+            background: #f5f8fd;
+            padding: 0.6rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-weight: 700;
+            color: #1e375f;
+        }
+
+        .job-dates {
+            color: #5a6478;
+            font-size: 0.88rem;
+            float: right;
+        }
+
+        .job-company {
+            font-style: italic;
+            font-size: 0.92rem;
+            color: #5a6478;
+        }
+
+        .job ul {
+            padding-left: 1.2rem;
+            margin: 0.4rem 0;
+            font-size: 0.93rem;
+        }
+
+        .job li { margin-bottom: 0.3rem; }
+
+        .tech {
+            font-size: 0.85rem;
+            color: #5a6478;
+            margin-top: 0.4rem;
+        }
+
+        .tech strong { color: #374150; }
+
+        /* Certifications */
+        .certs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.93rem;
+        }
+
+        .cert {
+            background: #f5f8fd;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #5a6478;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .skills-grid .label { margin-top: 0.4rem; }
+            .job-dates { float: none; display: block; }
+            .certs { grid-template-columns: 1fr; }
+        }
+
+        /* ===== Print / Save-as-PDF styles ===== */
+        @media print {
+            *, *::before, *::after {
+                background: transparent !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            body {
+                background: white !important;
+                color: #222;
+                font-size: 8.5pt;
+                line-height: 1.25;
+            }
+            p, li, span, div, a, strong, em, i {
+                font-size: inherit;
+                line-height: inherit;
+            }
+            header {
+                position: static !important;
+                padding: 0 0 3pt;
+            }
+            header h1 { font-size: 20pt; color: #222; margin-bottom: 0; }
+            header .subtitle { font-size: 10pt; color: #444; opacity: 1; margin-bottom: 2pt; }
+            header .contact { font-size: 8pt; color: #555; opacity: 1; }
+            header .contact a { color: #555 !important; text-decoration: none; }
+            header .contact svg { display: none !important; }
+            header .contact span { color: #555 !important; }
+            header.compact { padding: 0 0 3pt; }
+            header.compact h1 { display: block; font-size: 20pt; margin-right: 0; }
+            header.compact .subtitle { display: block; font-size: 10pt; }
+            header.compact .contact { display: block; }
+            .print-btn { display: none !important; }
+            main { max-width: 100%; padding: 0; margin: 0; }
+            section { padding: 3pt 0 0 !important; margin: 0 !important; }
+            h2 {
+                font-size: 10.5pt;
+                color: #1e375f;
+                border-bottom: 1.5pt solid #1e375f !important;
+                padding-bottom: 1pt;
+                margin-bottom: 3pt;
+            }
+            .summary p { margin-bottom: 1.5pt; font-size: 8pt; }
+            .domains { font-size: 8pt; }
+            .skills-grid { gap: 0 6pt; font-size: 8pt; }
+            .edu-item { padding: 1pt 0; font-size: 8pt; }
+            .edu-item .degree, .edu-item .school { font-size: 8pt; }
+            .edu-item + .edu-item { border-top: 0.5pt solid #ccc !important; }
+            .job {
+                margin-bottom: 3pt;
+                border-left: 1.5pt solid #1e375f !important;
+                padding-left: 5pt;
+            }
+            .job:last-child { margin-bottom: 3pt; }
+            .job-header { padding: 0; margin-bottom: 1pt; }
+            .job-title { font-size: 9pt; color: #1e375f; }
+            .job-dates { font-size: 7.5pt; }
+            .job-company { font-size: 7.5pt; }
+            .job ul { margin: 1pt 0; padding-left: 11pt; font-size: 8pt; }
+            .job li { margin-bottom: 0; }
+            .tech { font-size: 7pt; margin-top: 1pt; }
+            .certs { gap: 0 4pt; font-size: 8pt; }
+            .cert { padding: 1pt 0; }
+            footer { display: none !important; }
+            @page { margin: 0.4in 0.5in; size: A4; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Pawan Kumar</h1>
+    <div class="subtitle">Principal Data Engineer</div>
+    <div class="contact">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg> <span style="color:#c8d8f0">The Netherlands</span> &bull;
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <a href="mailto:pwn496@gmail.com">pwn496@gmail.com</a> &bull;
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-3.37-4-3.12-4 0v5.6h-3v-10h3v1.77c1.4-2.59 7-2.78 7 2.48v5.75z"/></svg> <a href="https://linkedin.com/in/itsPWN" target="_blank">linkedin.com/in/itsPWN</a> &bull;
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M12 0c-6.63 0-12 5.37-12 12 0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.42.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg> <a href="https://github.com/itsPWN" target="_blank">github.com/itsPWN</a>
+    </div>
+</header>
+<button onclick="window.print()" class="print-btn">&#128424; Print</button>
+
+<main>
+
+    <section class="summary">
+        <h2>About Me</h2>
+        <p><strong>Data Engineer</strong> with <strong>15+ years</strong> of experience designing and delivering end-to-end data solutions. Focused on building and optimising data pipelines, integrating diverse data sources, and enabling data-driven insights in agile environments.</p>
+        <p>I build and deliver solutions across the full data lifecycle &mdash; from gathering stakeholder requirements and designing data models to developing pipelines, creating dashboards, and deploying production-ready solutions.</p>
+        <p class="domains"><strong>Domains:</strong> Oil &amp; Gas, ESG, Credit Risk Management, Digital Marketing, Telecom, Retail, HR, and Finance.</p>
+    </section>
+
+    <section>
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <span class="label">Data Engineering</span>
+            <span>Data Warehousing, Data Modelling (Dimensional, Data Vault), Knowledge Graph</span>
+            <span class="label">ETL / ELT</span>
+            <span>Python, Spark, Scala, Airflow, Dagster, Airbyte, SSIS, Pentaho</span>
+            <span class="label">SQL &amp; Query Engines</span>
+            <span>SQL, SparkSQL, Trino, Athena, Delta/Databricks, ArcadeDB, Redshift</span>
+            <span class="label">Visualisation</span>
+            <span>Superset, Power BI, SiSense, Metabase, Tableau, Oracle BI, SSRS</span>
+            <span class="label">Cloud Platforms</span>
+            <span>Databricks, AWS, Microsoft Azure</span>
+            <span class="label">Programming</span>
+            <span>Python, Scala, Spark, LinkML, Docker, Git</span>
+            <span class="label">AI / ML</span>
+            <span>AI Agents, LLM Integration, LiteLLM, Ollama</span>
+            <span class="label">Agile Practices</span>
+            <span>Scrum, Kanban, Requirement Gathering, Refinement, Estimation</span>
+        </div>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <div class="edu-item">
+            <span class="degree">Master of Science (Data Science)</span>
+            <span class="school">Liverpool John Moores University, UK</span>
+        </div>
+        <div class="edu-item">
+            <span class="degree">Bachelor of Technology (Electronic Engineering)</span>
+            <span class="school">Rajasthan Technical University, IN</span>
+        </div>
+    </section>
+
+    <section>
+        <h2>Experience</h2>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Dec 2022 &ndash; Present</span>
+                <div class="job-title">Principal Data Engineer</div>
+                <div class="job-company">Context Labs B.V. &mdash; Amsterdam, NL</div>
+            </div>
+            <ul>
+                <li>Design and develop data processing solutions using a Data Lakehouse architecture with knowledge graphs and ontology-driven data modelling</li>
+                <li>Collaborate with stakeholders to gather and refine requirements, building end-to-end data pipelines for reporting and analytics</li>
+                <li>Built an agentic data profiler using LLM-based agents, automating schema inference, validation, and anomaly detection</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> Python, Spark, Scala, Delta Lake, Dagster, Trino, Airbyte, Superset, LinkML, ArcadeDB, LiteLLM, Ollama, Azure</div>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Mar 2021 &ndash; Nov 2022</span>
+                <div class="job-title">Senior Data Engineer</div>
+                <div class="job-company">ABN AMRO Bank N.V. &mdash; Amsterdam, NL</div>
+            </div>
+            <ul>
+                <li>Migrated risk data processing from legacy Excel/Access workflows to an automated cloud-based platform</li>
+                <li>Implemented new data models, quality controls, and automated data integration pipelines</li>
+                <li>Bridged business and technical teams to translate requirements into technical specifications</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> Azure, Databricks, Python, PySpark, SparkSQL, Delta Lake, Power BI</div>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Sep 2019 &ndash; Feb 2021</span>
+                <div class="job-title">Data Operations Lead</div>
+                <div class="job-company">Mendix B.V. (Siemens) &mdash; Rotterdam, NL</div>
+            </div>
+            <ul>
+                <li>Built a data warehouse platform from scratch, defining architecture and technical direction for the Data Centre of Excellence</li>
+                <li>Established data quality, completeness, and compliance processes</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> AWS (Athena, S3, Glue, Redshift), Python, Spark, Delta Lake, Airflow, Docker, Power BI</div>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Oct 2017 &ndash; Aug 2019</span>
+                <div class="job-title">Business Intelligence Architect</div>
+                <div class="job-company">Crowd Media B.V. (now UNITH) &mdash; Amsterdam, NL</div>
+            </div>
+            <ul>
+                <li>Owned the full BI solution from requirements to dashboards and data pipeline management</li>
+                <li>Guided teams in applying data quality checks and modelling techniques</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> AWS (Redshift, S3, RDS, SageMaker), Pentaho, Sisense, MySQL, Python</div>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Nov 2015 &ndash; Sep 2017</span>
+                <div class="job-title">Senior Analyst</div>
+                <div class="job-company">Accenture B.V. &mdash; Amsterdam, NL</div>
+            </div>
+            <ul>
+                <li>Developed data models and interactive dashboards for telecom reporting and analytics</li>
+                <li>Automated manual processes through Oracle APEX and BI solutions</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> OBIEE / Oracle BI, Oracle APEX, PL/SQL, Python</div>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Oct 2014 &ndash; Oct 2015</span>
+                <div class="job-title">Data Intelligence Engineer</div>
+                <div class="job-company">EMC2 Pvt. Ltd. (now Dell EMC) &mdash; Bangalore, IN</div>
+            </div>
+            <ul>
+                <li>Built data models and ETL processes for HR and finance reporting</li>
+                <li>Analysed storage rack logs to support data science proof of concept</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> MSBI (SSIS, SSAS, SSRS), T-SQL, SQL Server, Greenplum, Python</div>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-dates">Apr 2011 &ndash; Oct 2014</span>
+                <div class="job-title">Software Engineering Analyst</div>
+                <div class="job-company">Accenture Technology Pvt. Ltd. &mdash; Bangalore, IN</div>
+            </div>
+            <ul>
+                <li>Built end-to-end ETL pipelines and dashboards using MSBI, SQL Server, and Tableau for multiple clients</li>
+                <li>Designed dimensional models for enterprise data warehouses</li>
+            </ul>
+            <div class="tech"><strong>Tech:</strong> MSBI (SSIS, SSAS, SSRS), T-SQL, SQL Server, Hadoop (Hive/Pig), Tableau</div>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Certifications</h2>
+        <div class="certs">
+            <div class="cert">Azure Data Scientist Associate</div>
+            <div class="cert">Azure Data Engineer Associate</div>
+            <div class="cert">Data Analyst Associate</div>
+            <div class="cert">Scrum Developer Certified (SDC)</div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2026 Pawan Kumar
+</footer>
+
+<script>
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('compact', window.scrollY > 60);
+    });
+</script>
+</body>
+</html>
